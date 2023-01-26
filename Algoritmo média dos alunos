@@ -1,0 +1,118 @@
+#include <stdio.h>
+struct boletim {
+  float notas[2][2];
+  float media;
+  int passou;
+};
+
+struct alunos {
+  char nome[50];
+  int serie;
+  struct boletim b;
+};
+
+int lerQtdAlunos();
+struct alunos lerAlunos(int numAluno);
+struct boletim lerNotas();
+float calcularMedia(struct boletim b);
+int validarPassou(struct boletim b);
+void mostraAlunos(struct alunos aluno);
+
+int main() {
+
+  int i;
+  int qtdAlunos = lerQtdAlunos();
+  struct alunos aluno[qtdAlunos];
+
+  for (i = 0; i < qtdAlunos; i++) {
+    aluno[i] = lerAlunos(i);
+    aluno[i].b = lerNotas();
+    aluno[i].b.media = calcularMedia(aluno[i].b);
+    aluno[i].b.passou = validarPassou(aluno[i].b);
+  }
+
+  for (i = 0; i < qtdAlunos; i++) {
+    mostraAlunos(aluno[i]);
+  }
+  return 0;
+}
+
+int lerQtdAlunos() {
+  int qtdAlunos;
+  printf("Digite a quantidade de alunos: ");
+  scanf("%d", &qtdAlunos);
+  printf ("\n");
+  return qtdAlunos;
+}
+
+struct alunos lerAlunos(int numAluno) {
+  struct alunos aluno;
+  numAluno = numAluno + 1;
+  printf("Digite o nome do aluno %d: ", numAluno);
+  scanf(" %s", aluno.nome);
+  printf("Digite a serie do aluno %d: ", numAluno);
+   scanf("%d", &aluno.serie);
+  return aluno;
+}
+
+struct boletim lerNotas() {
+  struct boletim b;
+    
+    printf("Digite a nota do trabalho 1: ");
+    scanf("%f", &b.notas[0][0]);  
+    while (b.notas[0][0] > 2.0 || b.notas[0][0] < 0) {
+        printf ("Nota invalida, digite novamente: ");
+        scanf("%f", &b.notas[0][0]);
+    }
+    
+    printf("Digite a nota do trabalho 2: ");
+    scanf("%f", &b.notas[0][1]);
+    while (b.notas[0][1] > 2.0 || b.notas[0][1] < 0) {
+        printf ("Nota invalida, digite novamente: ");
+        scanf("%f", &b.notas[0][1]);
+    }
+    
+    printf("Digite a nota da prova 1: ");
+    scanf("%f", &b.notas[1][0]);
+    while (b.notas[1][0] > 3.0 || b.notas[1][0] < 0) {
+        printf ("Nota invalida, digite novamente: ");
+        scanf("%f", &b.notas[1][0]);
+    }
+
+    printf("Digite a nota da prova 2: ");
+    scanf("%f", &b.notas[1][1]);
+    while (b.notas[1][1] > 3.0 || b.notas[1][1] < 0) {
+        printf ("Nota invalida, digite novamente: ");
+        scanf("%f", &b.notas[1][1]);
+    }
+    printf ("\n");
+    
+  return b;
+}
+
+float calcularMedia(struct boletim b) {
+  b.media = b.notas[0][0] + b.notas[0][1] + b.notas[1][0] + b.notas[1][1];
+  return b.media;
+}
+
+int validarPassou(struct boletim b) {
+  if (b.media >= 6){
+        b.passou = 1;
+        return b.passou;
+  }else{
+        b.passou = 0;
+        return b.passou;
+    }
+}
+
+void mostraAlunos(struct alunos aluno){
+    printf ("Nome: %s\n", aluno.nome);
+    printf ("Serie: %d\n", aluno.serie);
+    if (aluno.b.passou == 1) {
+        printf ("O aluno(a) PASSOU com media %.1f\n", aluno.b.media);
+        printf ("\n");
+    } else {
+        printf ("O aluno(a) REPROVOU com media %.1f\n", aluno.b.media);
+        printf ("\n");
+    }
+}
