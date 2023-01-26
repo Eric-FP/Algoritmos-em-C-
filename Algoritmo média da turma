@@ -1,0 +1,51 @@
+#include <stdio.h>
+
+int main()
+{
+float nt1 = 0,nt2 = 0,np = 0,ma = 0,mt = 0,mtfim = 0;
+int cont = 0, numAlunos = 0;
+
+    printf ("Digite o numero de Alunos: ");
+    scanf ("%d", &numAlunos);
+    printf ("ATENÇÃO. Os trabalhos valem 1.0 ponto e a prova vale 3.0 pontos.\n(As notas devem ser escritas utilizando ( . ) ao invés de ( , ).");
+        for (cont=1;cont <= numAlunos; cont++) {
+            printf ("\n");
+            printf (" Aluno %d : \n", cont);
+            printf (" - Digite a nota do trabalho 1: ");
+            scanf ("%f", &nt1);
+                while (nt1 > 1.0 || nt1 < 0.0) {
+                    printf ("Nota invalida! Digite novamente: ");
+                    scanf ("%f", &nt1);
+                }
+            printf (" - Digite a nota do trabalho 2: ");
+            scanf ("%f", &nt2);
+                while (nt2 > 1.0 || nt2 < 0.0) {
+                    printf ("Nota invalida! Digite novamente: ");
+                    scanf ("%f", &nt2);
+                }  
+            printf (" - Digite a nota da Prova: ");
+            scanf ("%f", &np);
+                while (np > 3.0 || np < 0.0) {
+                    printf ("Nota invalida! Digite novamente:");
+                    scanf ("%f", &np);
+                }
+ma = nt1 + nt2 + np;
+mt = ma; 
+mtfim = mtfim + mt;
+        }
+
+mtfim = mtfim / numAlunos;
+    printf ("\n");
+    printf ("A média da turma foi: %.2f\n", mtfim);
+    printf ("\n");
+        if (mtfim < 3.0) {
+            printf ("A Turma não foi muito bem :(\n");
+            printf ("\n");
+        } else {
+            printf ("A Turma foi bem :)\n");
+            printf ("\n");
+}
+    printf ("Fim do Algoritmo");
+
+return 0;
+}
