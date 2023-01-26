@@ -1,0 +1,32 @@
+#include <stdio.h>
+void somar(int n1, int n2);
+void msg();
+
+int main()
+{
+    int n1,n2;
+    void msg();
+    printf ("Digite o 1 numero:");
+    scanf ("%d", &n1);
+    printf ("Digite o 2 numero:");
+    scanf ("%d", &n2);
+    somar(n1,n2);
+
+    return 0;
+}
+
+void msg() {
+    printf ("Boa Noite\n");
+}
+
+void somar(int n1, int n2) {
+    int soma;
+    soma = n1 + n2;
+    printf ("Resultado:%d", soma);
+
+}
+
+float numero() {
+    float numero;
+    printf ("Digite um numero: ");
+}
